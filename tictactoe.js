@@ -58,6 +58,7 @@ console.log("END TEST")
 
 function scoreGame() {
     // Expanded gameboard into a single array, but still need to figure out how to check this against conditions.
+    // TRY > Adding a record of moves played to each player. This array can then be checked against a list of 'wins'.
     const arr1 = createGameBoard[0];
     const arr2 = createGameBoard[1];
     const arr3 = createGameBoard[2];
