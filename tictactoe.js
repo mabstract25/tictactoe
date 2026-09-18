@@ -20,6 +20,7 @@ function createPlayer(name, token) {
     return {
         name,
         greeting() {
+            // Replace console.log with alert or similar when UI is built.
             console.log(`${name}, your token is ${token}`)
         },
         token};
@@ -31,9 +32,9 @@ playerOne.greeting();
 playerTwo.greeting();
 
 
-function playGame(row,column) {
-    playerToken = token;
-    createGameBoard[row].splice(column, 1, playerToken)
+function playGame(row,column,player) {
+    playerToken = player.token;
+    createGameBoard[row].splice(column, 1, playerToken);
 
     console.log(createGameBoard[row]);
 } 
