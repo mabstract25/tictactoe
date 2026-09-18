@@ -49,3 +49,9 @@ function playGame(row,column,player) {
     console.log(`${currentPlayer.name}, your turn.`);
 }
 
+// TEST ROTATION
+playGame(0,0,currentPlayer)
+playGame(1,0,currentPlayer)
+playGame(0,1,currentPlayer)
+playGame(1,1,currentPlayer)
+playGame(0,2,currentPlayer)
