@@ -15,6 +15,7 @@ const createGameBoard = (() => {
 
 let token = "";
 
+
 function createPlayer(name, token) {
     
     return {
@@ -25,18 +26,26 @@ function createPlayer(name, token) {
         },
         token};
 }
-
+// Player Setup
 const playerOne = createPlayer("Player One","X")
 const playerTwo = createPlayer("Player Two","O")
 playerOne.greeting();
 playerTwo.greeting();
 
+let currentPlayer = playerOne;
+console.log(`${currentPlayer.name}, you start the game.`)
+
 
 function playGame(row,column,player) {
     playerToken = player.token;
     createGameBoard[row].splice(column, 1, playerToken);
+    // Player Switch after placing their token.
+    console.log(createGameBoard);
+    if(player === playerOne){
+        currentPlayer = playerTwo;
+    }else if(player === playerTwo){
+        currentPlayer = playerOne;
+    }
+    console.log(`${currentPlayer.name}, your turn.`);
+}
 
-    console.log(createGameBoard[row]);
-} 
-
-console.log(createGameBoard);
