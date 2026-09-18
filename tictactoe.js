@@ -48,10 +48,33 @@ function playGame(row,column,player) {
     }
     console.log(`${currentPlayer.name}, your turn.`);
 }
-
 // TEST ROTATION
 playGame(0,0,currentPlayer)
 playGame(1,0,currentPlayer)
 playGame(0,1,currentPlayer)
 playGame(1,1,currentPlayer)
 playGame(0,2,currentPlayer)
+console.log("END TEST")
+
+function scoreGame() {
+    // Expanded gameboard into a single array, but still need to figure out how to check this against conditions.
+    const arr1 = createGameBoard[0];
+    const arr2 = createGameBoard[1];
+    const arr3 = createGameBoard[2];
+    const testarr = arr1.concat(arr2,arr3);
+    console.log(testarr);
+    const conditions = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+    ];
+    
+}
+
+scoreGame();
+
