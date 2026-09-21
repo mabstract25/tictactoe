@@ -17,14 +17,16 @@ let token = "";
 
 
 function createPlayer(name, token) {
-    
+    let score = [];
     return {
         name,
         greeting() {
             // Replace console.log with alert or similar when UI is built.
             console.log(`${name}, your token is ${token}`)
         },
-        token};
+        score,
+        token
+    };
 }
 // Player Setup
 const playerOne = createPlayer("Player One","X")
@@ -40,13 +42,14 @@ function playGame(row,column,player) {
     playerToken = player.token;
     createGameBoard[row].splice(column, 1, playerToken);
     // Player Switch after placing their token.
-    console.log(createGameBoard);
+    // console.log(createGameBoard);
     if(player === playerOne){
         currentPlayer = playerTwo;
     }else if(player === playerTwo){
         currentPlayer = playerOne;
     }
     console.log(`${currentPlayer.name}, your turn.`);
+    calcPlayerScore(player, playerToken);
 }
 // TEST ROTATION
 playGame(0,0,currentPlayer)
@@ -55,6 +58,19 @@ playGame(0,1,currentPlayer)
 playGame(1,1,currentPlayer)
 playGame(0,2,currentPlayer)
 console.log("END TEST")
+
+function calcPlayerScore(player,token) {
+    
+    
+    const arr1 = createGameBoard[0];
+    const arr2 = createGameBoard[1];
+    const arr3 = createGameBoard[2];
+    const combinedArr = arr1.concat(arr2,arr3);
+    
+    let score = player.score;
+    // Need to clear array before inserting - try splice for array length?
+    score.push(combinedArr);
+}
 
 function scoreGame() {
     // Expanded gameboard into a single array, but still need to figure out how to check this against conditions.
@@ -77,5 +93,4 @@ function scoreGame() {
     
 }
 
-scoreGame();
 
