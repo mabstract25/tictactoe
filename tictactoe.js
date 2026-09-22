@@ -60,16 +60,25 @@ playGame(0,2,currentPlayer)
 console.log("END TEST")
 
 function calcPlayerScore(player,token) {
-    
-    
+    // Create rules to match player token
+    function isToken(t) {
+        if(t === token){
+            return token;
+        }if (t !== token){
+            return "";
+        }
+    };
+    // Take gameBoard array and combine
     const arr1 = createGameBoard[0];
     const arr2 = createGameBoard[1];
     const arr3 = createGameBoard[2];
     const combinedArr = arr1.concat(arr2,arr3);
-    
+    // Filter for token matches
+    const filtered = combinedArr.map(isToken);
+    console.log(filtered);
+    // Push scores to player objects
     let score = player.score;
-    // Need to clear array before inserting - try splice for array length?
-    score.push(combinedArr);
+    score.splice(0,score.length,filtered);
 }
 
 function scoreGame() {
