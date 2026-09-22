@@ -13,6 +13,17 @@ const createGameBoard = (() => {
     return gameBoard;
 })();
 
+const winCombos = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+];
+
 let token = "";
 
 
@@ -81,24 +92,13 @@ function calcPlayerScore(player,token) {
     score.splice(0,score.length,filtered);
 }
 
-function scoreGame() {
-    // Expanded gameboard into a single array, but still need to figure out how to check this against conditions.
-    // TRY > Adding a record of moves played to each player. This array can then be checked against a list of 'wins'.
-    const arr1 = createGameBoard[0];
-    const arr2 = createGameBoard[1];
-    const arr3 = createGameBoard[2];
-    const testarr = arr1.concat(arr2,arr3);
-    console.log(testarr);
-    const conditions = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
-    ];
+function checkWin() {
+    // use For to iterate over the winCombos array
+    // if winCombo[i].every includes the relevant player token, then: 
+    // playerName wins!
+    // if total array length reaches 9.
+    // https://acsoftware.medium.com/vanilla-javascript-tic-tac-toe-184c5a57d70
+    
     
 }
 
