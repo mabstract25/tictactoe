@@ -50,11 +50,11 @@ console.log(`${currentPlayer.name}, you start the game.`)
 
 
 function playGame(row,column,player) {
-    console.log(createGameBoard);
     playerToken = player.token;
     createGameBoard[row].splice(column, 1, playerToken);
+    // Update display controller here
+    displayController();
     // Player Switch after placing their token.
-    // console.log(createGameBoard);
     if(player === playerOne){
         currentPlayer = playerTwo;
     }else if(player === playerTwo){
@@ -110,4 +110,10 @@ function checkWin(player,token) {
     
 }
 
+function displayController() {
+    for(let i = 0; i < 3; i++) {
+        console.log(`${createGameBoard[i]}`);
+    }
+    
+}
 
