@@ -1,3 +1,21 @@
+const container = document.querySelector('.container');
+const renderBoard = (() => {
+    let idNum = 0;
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            const rowLink = document.createElement("a");
+            rowLink.setAttribute('href', "");
+            rowLink.id = `link${idNum}`;
+            const row = document.createElement("div");
+            row.id = `Cell${idNum}`;
+            idNum++
+            rowLink.appendChild(row)
+            container.appendChild(rowLink);
+            row.textContent = `${i},${j}`;
+        };
+    };
+})();
+
 const createGameBoard = (() => { 
     const rows = 3;
     const cols = 3;
