@@ -16,8 +16,8 @@ const renderBoard = (() => {
             rowLink.addEventListener("click", function(e) {
                 e.preventDefault();
                 console.log(`Row: ${cellRow}, Col: ${cellCol}.`);
-                playGame(cellRow,cellCol,currentPlayer);
-                e.target.textContent = currentPlayer.token
+                e.target.textContent = currentPlayer.token;
+                playGame(cellCol,cellRow,currentPlayer);
             })
 
             container.appendChild(rowLink);
@@ -96,6 +96,7 @@ function playGame(row,column,player) {
     console.log(`${currentPlayer.name}, your turn.`);
     calcPlayerScore(player, playerToken);
     checkWin(player, playerToken);
+    console.log(player.score)
 }
 // TEST ROTATION
 // playGame(0,0,currentPlayer)
@@ -136,7 +137,6 @@ function checkWin(player,token) {
         if(player.score[0][p1] === token && player.score[0][p2] === token && player.score[0][p3] === token) {
             console.log(`${player.name} wins!`)
         }else {
-            break
         }
         // if total array length reaches 9, declare draw.
     }
