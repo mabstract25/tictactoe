@@ -8,18 +8,20 @@ const renderBoard = (() => {
             const rowLink = document.createElement("a");
             rowLink.setAttribute('href', "");            
             const row = document.createElement("div");
+            row.classList.add('cell')
             rowLink.appendChild(row)
             let cellRow = gridRow;
             let cellCol = gridCol;
             
             rowLink.addEventListener("click", function(e) {
                 e.preventDefault();
-                console.log(`Row: ${cellRow}, Col: ${cellCol}.`)
-                playGame(cellRow,cellCol,currentPlayer)
+                console.log(`Row: ${cellRow}, Col: ${cellCol}.`);
+                playGame(cellRow,cellCol,currentPlayer);
+                e.target.textContent = currentPlayer.token
             })
 
             container.appendChild(rowLink);
-            row.textContent = `${i},${j}`;
+            row.textContent = "";
             gridRow++
         };
         gridRow = 0;
