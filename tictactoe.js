@@ -1,19 +1,32 @@
 const container = document.querySelector('.container');
 const renderBoard = (() => {
-    let idNum = 0;
+    let gridRow = 0;
+    let gridCol = 0
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
+            
             const rowLink = document.createElement("a");
-            rowLink.setAttribute('href', "");
-            rowLink.id = `link${idNum}`;
+            rowLink.setAttribute('href', "");            
             const row = document.createElement("div");
-            row.id = `Cell${idNum}`;
-            idNum++
             rowLink.appendChild(row)
+            let cellRow = gridRow;
+            let cellCol = gridCol;
+            
+            rowLink.addEventListener("click", function(e) {
+                e.preventDefault();
+                console.log(`Row: ${cellRow}, Col: ${cellCol}.`)
+                playGame(cellRow,cellCol,currentPlayer)
+            })
+
             container.appendChild(rowLink);
             row.textContent = `${i},${j}`;
+            gridRow++
         };
+        gridRow = 0;
+        gridCol++
+        
     };
+    
 })();
 
 const createGameBoard = (() => { 
