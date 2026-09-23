@@ -15,7 +15,6 @@ const renderBoard = (() => {
             
             rowLink.addEventListener("click", function(e) {
                 e.preventDefault();
-                console.log(`Row: ${cellRow}, Col: ${cellCol}.`);
                 e.target.textContent = currentPlayer.token;
                 playGame(cellCol,cellRow,currentPlayer);
             })
@@ -85,8 +84,8 @@ console.log(`${currentPlayer.name}, you start the game.`)
 function playGame(row,column,player) {
     playerToken = player.token;
     createGameBoard[row].splice(column, 1, playerToken);
-    // Update display controller here
-    displayController();
+    
+    // displayController();
     // Player Switch after placing their token.
     if(player === playerOne){
         currentPlayer = playerTwo;
@@ -96,15 +95,8 @@ function playGame(row,column,player) {
     console.log(`${currentPlayer.name}, your turn.`);
     calcPlayerScore(player, playerToken);
     checkWin(player, playerToken);
-    console.log(player.score)
 }
-// TEST ROTATION
-// playGame(0,0,currentPlayer)
-// playGame(1,0,currentPlayer)
-// playGame(0,1,currentPlayer)
-// playGame(1,1,currentPlayer)
-// playGame(0,2,currentPlayer)
-// console.log("END TEST")
+
 
 function calcPlayerScore(player,token) {
     // Create rules to match player token
@@ -143,10 +135,10 @@ function checkWin(player,token) {
     
 }
 
-function displayController() {
-    for(let i = 0; i < 3; i++) {
-        console.log(`${createGameBoard[i]}`);
-    }
+// function displayController() {
+//     for(let i = 0; i < 3; i++) {
+//         console.log(`${createGameBoard[i]}`);
+//     }
     
-}
+// }
 
