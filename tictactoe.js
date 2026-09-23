@@ -50,6 +50,7 @@ console.log(`${currentPlayer.name}, you start the game.`)
 
 
 function playGame(row,column,player) {
+    console.log(createGameBoard);
     playerToken = player.token;
     createGameBoard[row].splice(column, 1, playerToken);
     // Player Switch after placing their token.
@@ -61,14 +62,15 @@ function playGame(row,column,player) {
     }
     console.log(`${currentPlayer.name}, your turn.`);
     calcPlayerScore(player, playerToken);
+    checkWin(player, playerToken);
 }
 // TEST ROTATION
-playGame(0,0,currentPlayer)
-playGame(1,0,currentPlayer)
-playGame(0,1,currentPlayer)
-playGame(1,1,currentPlayer)
-playGame(0,2,currentPlayer)
-console.log("END TEST")
+// playGame(0,0,currentPlayer)
+// playGame(1,0,currentPlayer)
+// playGame(0,1,currentPlayer)
+// playGame(1,1,currentPlayer)
+// playGame(0,2,currentPlayer)
+// console.log("END TEST")
 
 function calcPlayerScore(player,token) {
     // Create rules to match player token
@@ -86,27 +88,24 @@ function calcPlayerScore(player,token) {
     const combinedArr = arr1.concat(arr2,arr3);
     // Filter for token matches
     const filtered = combinedArr.map(isToken);
-    console.log(filtered);
     // Push scores to player objects
     let score = player.score;
     score.splice(0,score.length,filtered);
 }
 
-function checkWin(player) {
-    // use For to iterate over the winCombos array
-    // if winCombo[i].every includes the relevant player token, then: 
-    // playerName wins!
-    // if total array length reaches 9.
-    // https://acsoftware.medium.com/vanilla-javascript-tic-tac-toe-184c5a57d70
-    
-    console.log(player.score);
-    
+function checkWin(player,token) {
+    // Iterate over all possible winCombos.
     for(let i = 0; i < winCombos.length; i++) {
         let p1 = winCombos[i][0];
         let p2 = winCombos[i][1];
         let p3 = winCombos[i][2];
-        console.log(player.score[0][p1], player.score[0][p2], player.score[0][p3])
-        // NEXT - Declare the string above as a variable
+
+        if(player.score[0][p1] === token && player.score[0][p2] === token && player.score[0][p3] === token) {
+            console.log(`${player.name} wins!`)
+        }else {
+            break
+        }
+        // if total array length reaches 9, declare draw.
     }
     
 }
