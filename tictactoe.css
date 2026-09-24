@@ -11,6 +11,7 @@
     grid-template-rows: 1fr 1fr 1fr;
     width: 800px;
     height: 800px;
+    padding: 5px;
 }
 
 .cell {
@@ -23,7 +24,7 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 12em;
     text-decoration: none;
-    
+    border: 1px solid purple;
 }
 
 .cell:hover {

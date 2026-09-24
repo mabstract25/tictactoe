@@ -127,7 +127,7 @@ function checkWin(player,token) {
         let p3 = winCombos[i][2];
 
         if(player.score[0][p1] === token && player.score[0][p2] === token && player.score[0][p3] === token) {
-            console.log(`${player.name} wins!`)
+            alert(`${player.name} wins!`)
         }else {
         }
         // if total array length reaches 9, declare draw.
