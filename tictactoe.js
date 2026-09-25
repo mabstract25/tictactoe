@@ -1,4 +1,6 @@
 const container = document.querySelector('.container');
+const playerOneBox = document.getElementById('playerOneBox');
+const playerTwoBox = document.getElementById('playerTwoBox');
 const renderBoard = (() => {
     let gridRow = 0;
     let gridCol = 0
@@ -68,7 +70,7 @@ function createPlayer(name, token) {
             console.log(`${name}, your token is ${token}`)
         },
         score,
-        token
+        token, 
     };
 }
 // Player Setup
@@ -78,10 +80,12 @@ playerOne.greeting();
 playerTwo.greeting();
 
 let currentPlayer = playerOne;
+playerOneBox.classList.add('currentplayer')
 console.log(`${currentPlayer.name}, you start the game.`)
 
 
 function playGame(row,column,player) {
+    
     playerToken = player.token;
     createGameBoard[row].splice(column, 1, playerToken);
     
@@ -89,8 +93,12 @@ function playGame(row,column,player) {
     // Player Switch after placing their token.
     if(player === playerOne){
         currentPlayer = playerTwo;
+        playerOneBox.classList.remove('currentplayer')
+        playerTwoBox.classList.add('currentplayer')
     }else if(player === playerTwo){
         currentPlayer = playerOne;
+        playerTwoBox.classList.remove('currentplayer')
+        playerOneBox.classList.add('currentplayer')
     }
     console.log(`${currentPlayer.name}, your turn.`);
     calcPlayerScore(player, playerToken);
@@ -130,9 +138,17 @@ function checkWin(player,token) {
             alert(`${player.name} wins!`)
         }else {
         }
+
+
         // if total array length reaches 9, declare draw.
     }
     
+}
+
+function draw() {
+    for(let i = 0; i < createGameBoard.length; i++) {
+        
+    }
 }
 
 // function displayController() {
