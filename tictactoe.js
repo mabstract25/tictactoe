@@ -120,6 +120,13 @@ function calcPlayerScore(player,token) {
     const arr2 = createGameBoard[1];
     const arr3 = createGameBoard[2];
     const combinedArr = arr1.concat(arr2,arr3);
+    
+    // Draw function - had to add here to use combinedArr
+    const draw = combinedArr.every(inner => inner !== "");
+    if(draw === true){
+        alert("DRAW!")
+    }
+
     // Filter for token matches
     const filtered = combinedArr.map(isToken);
     // Push scores to player objects
@@ -139,22 +146,10 @@ function checkWin(player,token) {
         }else {
         }
 
-
-        // if total array length reaches 9, declare draw.
     }
     
+
 }
 
-function draw() {
-    for(let i = 0; i < createGameBoard.length; i++) {
-        
-    }
-}
 
-// function displayController() {
-//     for(let i = 0; i < 3; i++) {
-//         console.log(`${createGameBoard[i]}`);
-//     }
-    
-// }
 
