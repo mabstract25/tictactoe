@@ -1,6 +1,7 @@
 const container = document.querySelector('.container');
 const playerOneBox = document.getElementById('playerOneBox');
 const playerTwoBox = document.getElementById('playerTwoBox');
+const msg = document.getElementById('message');
 const renderBoard = (() => {
     let gridRow = 0;
     let gridCol = 0
@@ -67,7 +68,7 @@ function createPlayer(name, token) {
         name,
         greeting() {
             // Replace console.log with alert or similar when UI is built.
-            console.log(`${name}, your token is ${token}`)
+            message(`${name}, your token is ${token}`)
         },
         score,
         token, 
@@ -76,12 +77,12 @@ function createPlayer(name, token) {
 // Player Setup
 const playerOne = createPlayer("Player One","X")
 const playerTwo = createPlayer("Player Two","O")
-playerOne.greeting();
-playerTwo.greeting();
+// playerOne.greeting();
+// playerTwo.greeting();
 
 let currentPlayer = playerOne;
 playerOneBox.classList.add('currentplayer')
-console.log(`${currentPlayer.name}, you start the game.`)
+message(`${currentPlayer.name}, you start the game.`)
 
 
 function playGame(row,column,player) {
@@ -100,7 +101,7 @@ function playGame(row,column,player) {
         playerTwoBox.classList.remove('currentplayer')
         playerOneBox.classList.add('currentplayer')
     }
-    console.log(`${currentPlayer.name}, your turn.`);
+    message(`${currentPlayer.name}, your turn.`);
     calcPlayerScore(player, playerToken);
     checkWin(player, playerToken);
 }
@@ -120,11 +121,17 @@ function calcPlayerScore(player,token) {
     const arr2 = createGameBoard[1];
     const arr3 = createGameBoard[2];
     const combinedArr = arr1.concat(arr2,arr3);
-    
+
     // Draw function - had to add here to use combinedArr
     const draw = combinedArr.every(inner => inner !== "");
     if(draw === true){
-        alert("DRAW!")
+        alert("DRAW!");
+        reset();
+        // FIX with choice
+        playerOneBox.classList.add('currentplayer');
+        playerTwoBox.classList.remove('currentplayer');
+        currentPlayer = playerOne;
+        message(`${currentPlayer.name}, you start the game.`);
     }
 
     // Filter for token matches
@@ -142,14 +149,31 @@ function checkWin(player,token) {
         let p3 = winCombos[i][2];
 
         if(player.score[0][p1] === token && player.score[0][p2] === token && player.score[0][p3] === token) {
-            alert(`${player.name} wins!`)
+            alert(`${player.name} wins!`);
+            reset();
+            // FIX with choice
+            playerOneBox.classList.add('currentplayer');
+            playerTwoBox.classList.remove('currentplayer');
+            currentPlayer = playerOne;
+            message(`${currentPlayer.name}, you start the game.`);
         }else {
         }
 
     }
     
-
 }
 
+function message(text) {
+    msg.textContent = text;
+}
 
+function reset() {
+    const cells = document.getElementsByClassName('cell');
+    for(let i = 0; i < cells.length; i++) {
+        cells[i].textContent = "";
+    }
+    createGameBoard[0].splice(0,3,"","","");
+    createGameBoard[1].splice(0,3,"","","");
+    createGameBoard[2].splice(0,3,"","","");
+}
 
